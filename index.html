@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtuálne prehliadky Čenták | Premium Real Estate</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- DEFINÍCIE PREMENNÝCH A RESET --- */
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #cccccc;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #b59226;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; transition: 0.3s ease; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- TYPOGRAFIA --- */
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        .gold-text { color: var(--accent-gold); }
+        .italic-accent { font-style: italic; font-weight: 400; }
+
+        /* --- NAVIGÁCIA --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo span { color: var(--accent-gold); }
+
+        nav ul { display: flex; gap: 2rem; }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        nav a:hover { color: var(--accent-gold); }
+
+        /* --- HERO SEKCIA --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-gold);
+            color: #000;
+        }
+
+        /* --- SEKCIA 360 PREHLIADKY (CRUCIAL) --- */
+        .tours-section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header span {
+            font-family: var(--font-heading);
+            font-style: italic;
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+        }
+
+        .iframe-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .tour-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tour-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .tour-wrapper {
+            position: relative;
+            width: 100%;
+            /* Pomer strán 16:9 */
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .tour-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .tour-info {
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .tour-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tour-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- PREČO MY (TEXTOVÁ ČASŤ) --- */
+        .features {
+            background-color: #0F1115;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            max-width: 300px;
+        }
+
+        .feature-item h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* --- PÄTA (FOOTER) --- */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            background: #0a0a0a;
+        }
+
+        .footer-content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 1rem;
+        }
+
+        /* --- RESPONZIVITA --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .iframe-container { grid-template-columns: 1fr; }
+            nav ul { display: none; } /* Jednoduché skrytie pre demo */
+            .logo { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Virtuálne prehliadky <span class="italic-accent">Čenták</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Domov</a></li>
+                <li><a href="#tours">Prehliadky</a></li>
+                <li><a href="#services">Služby</a></li>
+                <li><a href="#contact" style="color: var(--accent-gold);">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Vaša Nehnuteľnosť<br><span class="italic-accent gold-text">V Dokonalom Svetle</span></h1>
+        <p>Premium fototografia a interaktívne 3D prehliadky, ktoré predávajú s eleganciou.</p>
+        <a href="#contact" class="btn">Dohodnúť Termín</a>
+    </section>
+
+    <section id="tours" class="tours-section">
+        <div class="section-header">
+            <span>Interaktívny zážitok</span>
+            <h2>Naše 360° Prehliadky</h2>
+            <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">
+                Umožnite klientom prejsť sa po nehnuteľnosti z pohodlia domova.
+                <br>Skúste si naše demo nižšie.
+            </p>
+        </div>
+
+        <div class="iframe-container">
+            <div class="tour-card">
+                <div class="tour-wrapper">
+                    <iframe 
+                        src="https://my.matterport.com/show/?m=JGPnGQ6hqcn&play=1" 
+                        allowfullscreen 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="tour-info">
+                    <h3>Rezidencia Hradný Vrch</h3>
+                    <p>4 Izby | 180 m² | Staré Mesto</p>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                <div class="tour-wrapper">
+                    <iframe 
+                        src="https://my.matterport.com/show/?m=5e339276&play=1" 
+                        allowfullscreen 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="tour-info">
+                    <h3>Penthouse Sky Park</h3>
+                    <p>3 Izby | 120 m² | Panoramatický výhľad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="features">
+        <div class="section-header">
+            <h2 style="font-size: 2rem;">Prečo si vybrať <span class="gold-text">Čenták</span></h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3>Vizuálna Dokonalosť</h3>
+                <p style="color: #aaa;">Každý záber je komponovaný s citom pre detail a atmosféru luxusu.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Najnovšia Technológia</h3>
+                <p style="color: #aaa;">Používame špičkové 3D kamery pre plynulý a realistický zážitok.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Rýchle Dodanie</h3>
+                <p style="color: #aaa;">Profesionálne spracovanie a odovzdanie projektu do 48 hodín.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h2>Virtuálne prehliadky <span class="italic-accent gold-text">Čenták</span></h2>
+            <div class="contact-info">
+                <p>Máte záujem o spoluprácu?</p>
+                <p style="color: var(--text-main); font-size: 1.2rem; margin: 1rem 0;">info@virtualneprehliadky-centak.sk</p>
+                <p>+421 900 000 000</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Virtuálne prehliadky Čenták. Všetky práva vyhradené. Designed for Luxury.
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -18,6 +18,12 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
     <script>
+        // OKAMŽITÝ RESET SCROLLU EŠTE PRED NAČÍTANÍM
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        
         tailwind.config = {
             theme: {
                 extend: {
@@ -242,29 +248,37 @@
                     <h2 class="font-serif text-5xl md:text-7xl reveal-up">Riešenia <span class="accent-font text-lux-gold">na Mieru</span></h2>
                 </div>
                 <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="service-card p-8 md:p-10 service-item group relative opacity-0">
+                    <!-- Služba 01 -->
+                    <div class="service-card p-8 md:p-10 service-item group relative opacity-0 flex flex-col">
                         <div class="absolute top-8 right-8 text-lux-gold/40 group-hover:text-lux-gold transition-colors">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                         </div>
                         <div class="text-lux-gold text-4xl font-serif italic mb-6">01.</div>
                         <h3 class="font-serif text-2xl mb-4 text-white">Webová Prehliadka</h3>
-                        <p class="font-sans text-sm text-gray-400 font-light leading-relaxed">Dostupná ako odkaz alebo vložená na váš web. Bez potreby prihlásenia, plynulá a rýchla.</p>
+                        <p class="font-sans text-sm text-gray-400 font-light leading-relaxed mb-6 flex-grow">Prehliadka je dostupná ako odkaz alebo priamo vložená na web klienta. Zákazník si ju pozrie po otvorení stránky, bez potreby Google účtu.</p>
+                        <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-lux-gold border-t border-white/10 pt-4 block">Ideálne pre Realitný trh</span>
                     </div>
-                    <div class="service-card p-8 md:p-10 service-item group relative opacity-0">
+
+                    <!-- Služba 02 -->
+                    <div class="service-card p-8 md:p-10 service-item group relative opacity-0 flex flex-col">
                         <div class="absolute top-8 right-8 text-lux-gold/40 group-hover:text-lux-gold transition-colors">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </div>
                         <div class="text-lux-gold text-4xl font-serif italic mb-6">02.</div>
                         <h3 class="font-serif text-2xl mb-4 text-white">Google Street View</h3>
-                        <p class="font-sans text-sm text-gray-400 font-light leading-relaxed">Verejne dostupná na Google Mapách. Zvýšte viditeľnosť vášho biznisu vo vyhľadávaní.</p>
+                        <p class="font-sans text-sm text-gray-400 font-light leading-relaxed mb-6 flex-grow">Virtuálna prehliadka je verejne dostupná priamo na Google Mapách. Každý, kto vyhľadá vašu firmu, si môže priestor okamžite prezrieť.</p>
+                        <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-lux-gold border-t border-white/10 pt-4 block">Podpora SEO a Návštevnosti</span>
                     </div>
-                    <div class="service-card p-8 md:p-10 service-item group relative opacity-0">
+
+                    <!-- Služba 03 -->
+                    <div class="service-card p-8 md:p-10 service-item group relative opacity-0 flex flex-col">
                         <div class="absolute top-8 right-8 text-lux-gold/40 group-hover:text-lux-gold transition-colors">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 4a2 2 0 114 0v1a2 2 0 01-2 2 2 2 0 01-2-2V4zm-6 8a2 2 0 114 0v1a2 2 0 01-2 2 2 2 0 01-2-2v-1zm12 0a2 2 0 114 0v1a2 2 0 01-2 2 2 2 0 01-2-2v-1z"></path></svg>
                         </div>
                         <div class="text-lux-gold text-4xl font-serif italic mb-6">03.</div>
-                        <h3 class="font-serif text-2xl mb-4 text-white">Kombo Riešenie</h3>
-                        <p class="font-sans text-sm text-gray-400 font-light leading-relaxed">Prepojenie webovej integrácie s Google Mapami pre maximálny marketingový dosah.</p>
+                        <h3 class="font-serif text-2xl mb-4 text-white">Kombo: Web + Mapy</h3>
+                        <p class="font-sans text-sm text-gray-400 font-light leading-relaxed mb-6 flex-grow">Spojenie oboch možností. Prehliadka je na Google Mapách aj na vašom webe. Maximálny dosah, vyššia dôveryhodnosť a jednotná prezentácia.</p>
+                        <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-lux-gold border-t border-white/10 pt-4 block">Maximálny Efekt</span>
                     </div>
                 </div>
             </div>
@@ -339,10 +353,7 @@
     </footer>
 
     <script>
-        // ZMENA: Vynútený reset scrollu na začiatok stránky po refreshnutí
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
-        }
+        // ZMENA: Dvojitá poistka pre scroll na začiatok
         window.onbeforeunload = function () {
             window.scrollTo(0, 0);
         }
@@ -350,6 +361,12 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
         window.addEventListener('load', () => {
+            // Násilný reset scrollu s malým oneskorením pre mobilné prehliadače
+            // Toto prebije aj #portfolio v URL
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10);
+
             const tl = gsap.timeline();
             tl.to('.loader-text', { y: 0, duration: 1, stagger: 0.2, ease: "power4.out" })
               .to('.loader-text', { y: '-100%', duration: 0.6, delay: 0.3, ease: "power2.in" })
@@ -368,6 +385,9 @@
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                     smoothWheel: true
                 });
+
+                // ZMENA: Vynútenie Lenis scrollu na začiatok
+                lenis.scrollTo(0, { immediate: true, force: true });
 
                 function raf(time) {
                     lenis.raf(time);

@@ -229,19 +229,32 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24 px-6 md:px-12 lg:px-24">
-                <div class="group">
-                    <div class="aspect-[4/5] relative overflow-hidden rounded-sm mb-6 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" alt="TechHub">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <a href="#" class="nav-btn-hover relative px-6 py-3 border border-white/50 rounded-full overflow-hidden transition-all bg-white/10 backdrop-blur-md">
-                                <span class="relative z-10 font-sans text-[10px] tracking-[0.2em] uppercase text-white font-semibold">Spustiť Prehliadku</span>
-                                <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="font-serif text-2xl group-hover:text-lux-gold transition-colors">Centrála TechHub</h3>
-                </div>
+            <div class="group md:mt-24">
+    <div id="tour-container-1" class="aspect-[4/5] relative overflow-hidden rounded-sm mb-6 shadow-lg cursor-pointer bg-white">
+        
+        <div class="absolute inset-0 transition-opacity duration-1000" id="tour-cover-1">
+             <img src="LK.png" 
+                  class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" 
+                  alt="LK Fitness"
+                  onerror="this.src='https://placehold.co/600x800/white/black?text=LK+Fitness+Foto'">
+        </div>
+        
+        <div class="tour-overlay absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/20 transition-all duration-500" id="tour-overlay-1">
+            
+            <button onclick="loadTour('tour-container-1', 'https://virtualneprehliadkycentak.github.io/LK_Fitness/')" 
+                    class="nav-btn-hover relative px-6 py-3 border border-white/50 rounded-full overflow-hidden transition-all bg-white/10 backdrop-blur-md group/btn">
+                <span class="relative z-10 font-sans text-[10px] tracking-[0.2em] uppercase text-white font-semibold group-hover/btn:text-lux-black transition-colors">
+                    Spustiť Prehliadku
+                </span>
+                <div class="absolute inset-0 bg-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform origin-left duration-500"></div>
+            </button>
+            
+        </div>
+    </div>
+
+    <h3 class="font-serif text-2xl text-lux-black group-hover:text-lux-gold transition-colors duration-300">LK Fitness</h3>
+    <p class="font-sans text-xs text-lux-gray mt-2 tracking-widest uppercase">Komerčný priestor • 3D Sken</p>
+</div>
 
                 <div class="group md:mt-24">
                     <div class="aspect-[4/5] relative overflow-hidden rounded-sm mb-6 shadow-lg">

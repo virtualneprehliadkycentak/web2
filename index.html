@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="sk">
-<head>
+<html lang="sk" style="background-color: #0F0F0F;"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 1. NOVÝ META TITLE -->
     <title>Virtuálne prehliadky Čenták | 3D skenovanie nehnuteľností a firiem</title>
-    
-    <!-- 2. NOVÝ META DESCRIPTION -->
     <meta name="description" content="Profesionálne 3D virtuálne prehliadky pre reality, hotely a firmy. Zvýšte predaj nehnuteľnosti vďaka interaktívnym prehliadkam. Pôsobíme na celom Slovensku.">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,13 +12,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- GSAP and Lenis -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
 
     <script>
-        // OKAMŽITÝ RESET SCROLLU EŠTE PRED NAČÍTANÍM
         if (history.scrollRestoration) {
             history.scrollRestoration = 'manual';
         }
@@ -49,38 +43,32 @@
     </script>
 
     <style>
-        body { background-color: #F9F8F4; color: #0F0F0F; overflow-x: hidden; }
+        /* Okamžité skrytie obsahu pred načítaním loaderu */
+        body { background-color: #F9F8F4; color: #0F0F0F; overflow-x: hidden; margin: 0; }
+        main, nav, footer { opacity: 0; }
+        .loaded main, .loaded nav, .loaded footer { opacity: 1; }
+
         .accent-font { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; }
         
-        /* Hero Live Effect */
-        .hero-bg-container {
-            position: absolute; inset: 0; overflow: hidden;
-        }
-        .hero-bg-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transform: scale(1.1);
-            will-change: transform;
-        }
-
+        .hero-bg-container { position: absolute; inset: 0; overflow: hidden; }
+        .hero-bg-img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); will-change: transform; }
         .velocity-text { will-change: transform; display: block; }
         
-        /* Nav & Buttons */
         .nav-btn-hover div.bg-fill {
             position: absolute; inset: 0; background-color: white;
             transform: scaleX(0); transform-origin: left;
             transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .nav-btn-hover:hover div.bg-fill { transform: scaleX(1); }
-        /* Upravené pre zmenu farby textu pri hoveri na čiernu (pre viditeľnosť na bielom pozadí) */
         .nav-btn-hover:hover span { color: #0F0F0F !important; transition: color 0.6s; }
 
-        /* Loader */
+        /* Loader - Vylepšená viditeľnosť */
         #loader {
             position: fixed; inset: 0; background: #0F0F0F; z-index: 9999;
             display: flex; justify-content: center; align-items: center; color: #C6A87C;
+            visibility: visible;
         }
 
-        /* Form Styling */
         .unified-input {
             width: 100%; background-color: transparent; border-bottom: 1px solid rgba(15, 15, 15, 0.2);
             padding: 1rem 0; font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
@@ -91,11 +79,9 @@
         .form-status.error { color: #EF4444; display: block; }
         .form-status.loading { color: #C6A87C; display: block; }
 
-        /* Mobile Menu */
         #mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
         #mobile-menu.open { transform: translateX(0); }
 
-        /* Service Cards */
         .service-card {
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -121,7 +107,6 @@
             <a href="#vision" class="hover:text-lux-gold transition-colors duration-300">Vízia</a>
             <a href="#portfolio" class="hover:text-lux-gold transition-colors duration-300">Portfólio</a>
             <a href="#services" class="hover:text-lux-gold transition-colors duration-300">Služby</a>
-            <!-- ZMENA: Tlačidlo Kontakt teraz v bielej farbe -->
             <a href="#contact" class="nav-btn-hover group relative px-8 py-3 border border-white/50 rounded-full overflow-hidden transition-all hover:border-white">
                 <span class="relative z-10 text-white">Kontakt</span><div class="bg-fill !bg-white"></div>
             </a>
@@ -139,7 +124,6 @@
     </nav>
 
     <main>
-        <!-- HERO SECTION -->
         <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-lux-black">
             <div class="hero-bg-container">
                 <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2574&auto=format&fit=crop" 
@@ -150,29 +134,23 @@
             
             <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
                 <p class="hero-anim-init font-sans text-sm md:text-base tracking-[0.45em] uppercase mb-8 text-lux-gold font-semibold opacity-0 -translate-y-4">Priestor bez hraníc</p>
-                
-                <!-- 3. SPRÁVNY NADPIS H1 (Ponechané pôvodné, lebo už je to H1 a obsahuje kľúčové slová) -->
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-9xl leading-[0.9] mb-12">
                     <span class="hero-anim-init block velocity-text opacity-0 -translate-y-4">VIRTUÁLNE</span>
                     <span class="hero-anim-init block velocity-text accent-font text-white/90 opacity-0 -translate-y-4">Prehliadky Čenták</span>
                 </h1>
-                
                 <div class="hero-anim-init flex justify-center opacity-0 -translate-y-4">
-                    <!-- ZMENA: Nové tlačidlo podľa požiadavky (white/glass style) -->
                     <a href="#portfolio" class="nav-btn-hover group relative px-10 py-5 border border-white/30 rounded-full overflow-hidden transition-all hover:border-white/80 bg-white/5 backdrop-blur-sm">
                         <span class="relative z-10 font-sans text-[11px] tracking-[0.2em] uppercase text-white font-semibold">Preskúmať Realizácie</span>
-                        <div class="bg-fill"></div> <!-- Pridaná trieda bg-fill pre funkčnosť animácie -->
+                        <div class="bg-fill"></div>
                     </a>
                 </div>
             </div>
         </header>
 
-        <!-- VISION SECTION -->
         <section id="vision" class="relative py-24 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
                 <div class="md:col-span-6">
                     <span class="block font-sans text-xs text-lux-gold tracking-[0.3em] uppercase mb-6 reveal-up">Vízia</span>
-                    <!-- H2 NADPIS (Správne nastavený) -->
                     <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-lux-black leading-tight mb-8 velocity-text">
                         Zmeňte pohľad na priestor. <br>
                         <span class="accent-font text-lux-gold block text-right md:pl-12 mt-2">Realita pod kontrolou.</span>
@@ -189,19 +167,16 @@
             </div>
         </section>
 
-        <!-- PORTFOLIO SECTION -->
         <section id="portfolio" class="bg-lux-white py-24 md:py-32 border-t border-lux-black/5">
             <div class="px-6 md:px-12 lg:px-24 mb-24">
                 <div class="flex flex-col md:flex-row justify-between items-end border-b border-lux-black/10 pb-8">
                     <div>
                         <span class="block font-sans text-xs text-lux-gold tracking-[0.3em] uppercase mb-4 reveal-up">Vybrané Projekty</span>
-                        <!-- H2 NADPIS (Správne nastavený) -->
                         <h2 class="font-serif text-5xl md:text-7xl text-lux-black reveal-up">Vstúpte do <span class="accent-font">Priestoru</span></h2>
                     </div>
                 </div>
             </div>
 
-            
             <div class="group relative w-full h-[60vh] md:h-[75vh] px-0 md:px-12 mb-32">
                 <div id="tour-container-1" class="h-full w-full relative overflow-hidden shadow-2xl md:rounded-sm cursor-pointer bg-white">
                     <div class="absolute inset-0 bg-white transition-opacity duration-1000 z-10" id="tour-cover-1">
@@ -224,16 +199,13 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24 px-6 md:px-12 lg:px-24">
-                
                 <div class="group">
                     <div id="tour-container-2" class="aspect-[4/5] relative overflow-hidden rounded-sm mb-6 shadow-lg bg-white cursor-pointer">
-                        
                         <div class="absolute inset-0 bg-white transition-opacity duration-1000 z-10" id="tour-cover-2">
                              <img src="LK.png" 
                                   class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" 
                                   alt="LK Fitness Logo">
                         </div>
-                        
                         <div class="tour-overlay absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/20 transition-all duration-500 z-20" id="tour-overlay-2">
                             <button onclick="loadTour('tour-container-2', 'https://virtualneprehliadkycentak.github.io/LK_Fitness/', 'tour-cover-2', 'tour-overlay-2')" class="nav-btn-hover relative px-8 py-3 border border-lux-black/20 bg-white/80 rounded-full overflow-hidden transition-all hover:bg-lux-black hover:border-lux-black backdrop-blur-md shadow-lg group-hover:scale-110">
                                 <span class="relative z-10 font-sans text-[10px] tracking-[0.2em] uppercase text-lux-black font-semibold group-hover:text-white transition-colors">Spustiť Prehliadku</span>
@@ -255,20 +227,17 @@
                     </div>
                     <h3 class="font-serif text-2xl group-hover:text-lux-gold transition-colors">The Grand Lobby</h3>
                 </div>
-
             </div>
         </section>
-        <!-- SERVICES SECTION -->
+
         <section id="services" class="relative py-24 md:py-32 bg-lux-black text-lux-cream overflow-hidden">
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-lux-gold/10 rounded-full blur-[120px]"></div>
             <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
                 <div class="mb-20 text-center md:text-left">
                     <span class="block font-sans text-xs text-lux-gold tracking-[0.3em] uppercase mb-4 reveal-up">Naše Služby</span>
-                    <!-- H2 NADPIS (Správne nastavený) -->
                     <h2 class="font-serif text-5xl md:text-7xl reveal-up">Riešenia <span class="accent-font text-lux-gold">na Mieru</span></h2>
                 </div>
                 <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Služba 01 -->
                     <div class="service-card p-8 md:p-10 service-item group relative opacity-0 flex flex-col">
                         <div class="absolute top-8 right-8 text-lux-gold/40 group-hover:text-lux-gold transition-colors">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
@@ -279,7 +248,6 @@
                         <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-lux-gold border-t border-white/10 pt-4 block">Ideálne pre Realitný trh</span>
                     </div>
 
-                    <!-- Služba 02 -->
                     <div class="service-card p-8 md:p-10 service-item group relative opacity-0 flex flex-col">
                         <div class="absolute top-8 right-8 text-lux-gold/40 group-hover:text-lux-gold transition-colors">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -290,7 +258,6 @@
                         <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-lux-gold border-t border-white/10 pt-4 block">Podpora SEO a Návštevnosti</span>
                     </div>
 
-                    <!-- Služba 03 -->
                     <div class="service-card p-8 md:p-10 service-item group relative opacity-0 flex flex-col">
                         <div class="absolute top-8 right-8 text-lux-gold/40 group-hover:text-lux-gold transition-colors">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 4a2 2 0 114 0v1a2 2 0 01-2 2 2 2 0 01-2-2V4zm-6 8a2 2 0 114 0v1a2 2 0 01-2 2 2 2 0 01-2-2v-1zm12 0a2 2 0 114 0v1a2 2 0 01-2 2 2 2 0 01-2-2v-1z"></path></svg>
@@ -304,12 +271,10 @@
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
         <section id="contact" class="bg-lux-white py-24 px-6 md:px-12 lg:px-24">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl mx-auto">
                 <div>
                     <span class="block font-sans text-xs text-lux-gold tracking-[0.3em] uppercase mb-6 reveal-up">Kontakt</span>
-                    <!-- H2 NADPIS (Správne nastavený) -->
                     <h2 class="font-serif text-5xl md:text-7xl text-lux-black mb-8 leading-none">Pripravení na <br><span class="accent-font text-lux-gold">Spoluprácu?</span></h2>
                     <div class="space-y-6 font-sans text-sm mt-12">
                         <a href="mailto:virtualne.prehliadky.centak@gmail.com" class="flex items-center gap-4 group hover:text-lux-gold transition-colors duration-300">
@@ -361,7 +326,6 @@
         </section>
     </main>
 
-    <!-- PÄTA STRÁNKY (Footer) -->
     <footer class="bg-lux-black py-12 px-6 text-center border-t border-white/5">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <p class="font-sans text-[10px] text-lux-gray tracking-widest uppercase">
@@ -374,21 +338,16 @@
     </footer>
 
     <script>
-        // FUNKCIA PRE NAČÍTANIE IFRAME
         function loadTour(containerId, url) {
             const container = document.getElementById(containerId);
             const cover = document.getElementById('tour-cover-1');
             const overlay = document.getElementById('tour-overlay-1');
             
-            // Animované skrytie obsahu
             if(cover) cover.style.opacity = '0';
             if(overlay) overlay.style.opacity = '0';
             
             setTimeout(() => {
-                // Vyčistíme container
                 container.innerHTML = '';
-                
-                // Vytvoríme iframe
                 const iframe = document.createElement('iframe');
                 iframe.src = url;
                 iframe.style.width = '100%';
@@ -396,13 +355,10 @@
                 iframe.style.border = 'none';
                 iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
                 iframe.allowFullscreen = true;
-                
-                // Pridáme iframe
                 container.appendChild(iframe);
-            }, 500); // Počkáme na fade-out efekt
+            }, 500);
         }
 
-        // ZMENA: Dvojitá poistka pre scroll na začiatok
         window.onbeforeunload = function () {
             window.scrollTo(0, 0);
         }
@@ -410,8 +366,9 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
         window.addEventListener('load', () => {
-            // Násilný reset scrollu s malým oneskorením pre mobilné prehliadače
-            // Toto prebije aj #portfolio v URL
+            // Pridanie triedy pre zobrazenie obsahu až po načítaní scriptov
+            document.body.classList.add('loaded');
+            
             setTimeout(() => {
                 window.scrollTo(0, 0);
             }, 10);
@@ -427,72 +384,32 @@
 
         function initApp() {
             gsap.registerPlugin(ScrollTrigger);
-
             if (typeof Lenis !== 'undefined') {
                 const lenis = new Lenis({
                     duration: 1.2,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                     smoothWheel: true
                 });
-
-                // ZMENA: Vynútenie Lenis scrollu na začiatok
                 lenis.scrollTo(0, { immediate: true, force: true });
-
                 function raf(time) {
                     lenis.raf(time);
                     requestAnimationFrame(raf);
                 }
                 requestAnimationFrame(raf);
             }
-
             initAnimations();
         }
 
         function initAnimations() {
-            // HERO IMAGE "LIVE" ZOOM EFFECT - Aktivuje sa hneď, bez nutnosti scrollu
-            gsap.fromTo('#hero-image', 
-                { scale: 1.1 }, 
-                { scale: 1.25, duration: 20, ease: "sine.inOut", repeat: -1, yoyo: true }
-            );
-
-            // Parallax efekt na scrollovanie ostáva
-            gsap.to('#hero-image', {
-                yPercent: 15,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "header",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-
-            gsap.to('.hero-anim-init', { 
-                y: 0, 
-                opacity: 1, 
-                duration: 1.2, 
-                stagger: 0.2, 
-                ease: "power3.out" 
-            });
-
-            gsap.to(".service-item", {
-                scrollTrigger: { trigger: "#services-grid", start: "top 85%" },
-                y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out"
-            });
-
+            gsap.fromTo('#hero-image', { scale: 1.1 }, { scale: 1.25, duration: 20, ease: "sine.inOut", repeat: -1, yoyo: true });
+            gsap.to('#hero-image', { yPercent: 15, ease: "none", scrollTrigger: { trigger: "header", start: "top top", end: "bottom top", scrub: true }});
+            gsap.to('.hero-anim-init', { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: "power3.out" });
+            gsap.to(".service-item", { scrollTrigger: { trigger: "#services-grid", start: "top 85%" }, y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" });
             document.querySelectorAll('.reveal-up').forEach(el => {
-                gsap.fromTo(el, { y: 40, opacity: 0 }, {
-                    y: 0, opacity: 1, duration: 1, ease: "power3.out",
-                    scrollTrigger: { trigger: el, start: "top 90%" }
-                });
+                gsap.fromTo(el, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" }});
             });
-
             document.querySelectorAll('.parallax-img').forEach(img => {
-                gsap.to(img, {
-                    yPercent: 20,
-                    ease: "none",
-                    scrollTrigger: { trigger: img.parentElement, scrub: 1, start: "top bottom", end: "bottom top" }
-                });
+                gsap.to(img, { yPercent: 20, ease: "none", scrollTrigger: { trigger: img.parentElement, scrub: 1, start: "top bottom", end: "bottom top" }});
             });
         }
 
@@ -510,15 +427,6 @@
                 if(isMenuOpen) {
                     gsap.fromTo('.mobile-link', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.2 });
                 }
-            });
-
-            document.querySelectorAll('.mobile-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    isMenuOpen = false;
-                    mobileMenu.classList.remove('open');
-                    menuText.textContent = 'Menu';
-                    document.body.style.overflow = '';
-                });
             });
         }
 
@@ -542,19 +450,17 @@
                         body: new FormData(form),
                         headers: { 'Accept': 'application/json' }
                     });
-
                     if (response.ok) {
                         status.className = 'form-status success';
                         status.innerText = 'Správa bola úspešne odoslaná! Ozveme sa vám čoskoro.';
                         form.reset();
                     } else {
-                        const data = await response.json();
                         status.className = 'form-status error';
-                        status.innerText = data.errors ? data.errors.map(err => err.message).join(", ") : "Nastala chyba pri odosielaní.";
+                        status.innerText = "Nastala chyba pri odosielaní.";
                     }
                 } catch (error) {
                     status.className = 'form-status error';
-                    status.innerText = "Chyba pripojenia. Skúste to prosím neskôr.";
+                    status.innerText = "Chyba pripojenia.";
                 } finally {
                     btn.disabled = false;
                     btn.innerText = originalText;
@@ -564,4 +470,3 @@
     </script>
 </body>
 </html>
-

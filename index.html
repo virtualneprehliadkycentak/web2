@@ -152,11 +152,11 @@ Put your HTML text here<!DOCTYPE html>
                 <div class="md:col-span-6">
                     <span class="block font-sans text-xs text-lux-gold tracking-[0.3em] uppercase mb-6 reveal-up">Vízia</span>
                     <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-lux-black leading-tight mb-8 velocity-text">
-                        Zmeňte pohľad na priestor.<br>
-                        <span class="accent-font text-lux-gold block text-right md:pl-12 mt-2">Realita pod kontrolou.</span>
+                        Nechajte svoju firmu vyniknúť <br>
+                        <span class="accent-font text-lux-gold block text-right md:pl-12 mt-2">Vďaka virtuálnej prehliadke</span>
                     </h2>
                     <div class="space-y-6 text-lux-charcoal font-sans font-light leading-relaxed max-w-xl reveal-up text-sm md:text-base text-justify">
-                        <p>Virtuálna prehliadka ukazuje emóciu a hĺbku priestoru. Dajte svojim klientom možnosť vstúpiť do vašich dverí ešte predtým, než zazvonia.</p>
+                        <p>Privítajte zákazníkov vnútri ešte pred príchodom, aby ste im pomohli získať predstavu o vašej firme a jej ponuke. Nasnímajte zábery svojho vybavenia, poličiek s výrobkami a ponúk. Zverejnite ich vo funkcii Street View sami alebo za pomoci profesionála.</p>
                     </div>
                 </div>
                 <div class="md:col-span-6 relative">
@@ -215,17 +215,21 @@ Put your HTML text here<!DOCTYPE html>
                 </div>
 
                 <div class="group md:mt-24">
-                    <div class="aspect-[4/5] relative overflow-hidden rounded-sm mb-6 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" alt="Lobby">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <a href="#" class="nav-btn-hover relative px-6 py-3 border border-white/50 rounded-full overflow-hidden transition-all bg-white/10 backdrop-blur-md">
-                                <span class="relative z-10 font-sans text-[10px] tracking-[0.2em] uppercase text-white font-semibold">Spustiť Prehliadku</span>
-                                <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="font-serif text-2xl group-hover:text-lux-gold transition-colors">The Grand Lobby</h3>
-                </div>
+    <div id="tour-container-1" class="aspect-[4/5] relative overflow-hidden rounded-sm mb-6 shadow-lg bg-white cursor-pointer">
+        <div class="absolute inset-0 bg-white transition-opacity duration-1000 z-10" id="tour-cover-1">
+            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=2670&auto=format&fit=crop" 
+                 class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" 
+                 alt="LK Fitness Street View">
+        </div>
+        
+        <div class="tour-overlay absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/20 transition-all duration-500 z-20" id="tour-overlay-1">
+            <button onclick="loadTour('tour-container-1', 'https://www.google.com/maps/embed?pb=!4v1772004647542!6m8!1m7!1sCAoSHENJQUJJaEJSSnNnZ09MTi0yVzRxbkUyVUJud1A.!2m2!1d49.43936427242815!2d18.78527997592922!3f258.19269403604966!4f0.8990692580144781!5f0.7820865974627469', 'tour-cover-1', 'tour-overlay-1')" class="nav-btn-hover relative px-8 py-3 border border-lux-black/20 bg-white/80 rounded-full overflow-hidden transition-all hover:bg-lux-black hover:border-lux-black backdrop-blur-md shadow-lg group-hover:scale-110">
+                <span class="relative z-10 font-sans text-[10px] tracking-[0.2em] uppercase text-lux-black font-semibold group-hover:text-white transition-colors">Spustiť Street View</span>
+            </button>
+        </div>
+    </div>
+    <h3 class="font-serif text-2xl group-hover:text-lux-gold transition-colors">LK Fitness Street View</h3>
+</div>
             </div>
         </section>
 
